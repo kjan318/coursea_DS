@@ -1,0 +1,44 @@
+---
+title: 'S09_W2 Assignment: MUST Visit Place in Taipei for Traveler'
+author: "Kieso Jan"
+date: "12/30/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Assignment Instructions
+
+1. Create a web page using R Markdown that features a map created with Leaflet. 
+2. Host your webpage on either GitHub Pages, RPubs, or NeoCities.  
+3. Your webpage must contain the date that you created the document, and it must contain a map created with Leaflet. 
+
+## Review criteria
+The rubric contains the following two questions:
+
+1. Does the web page feature a date and is this date less than two months before the date that you're grading this assignment?
+2. Does the web page feature an interactive map that appears to have been created with Leaflet?
+  
+## Map
+Hover to the spots and click to the website of these places! 
+
+```{r, echo = F}  
+
+library(leaflet)  
+
+TPEPlace <- data.frame(lat = c(25.034640020383485, 25.03781041581507, 25.040491473724845, 25.102403961415703),
+                       lng = c(121.5645883276415, 121.50060005862542, 121.56072159510262,121.54902893973286))
+tourSites <- c(
+  "<a href='https://https://www.taipei-101.com.tw/tw/'>Taipei 101</a>",
+  "<a href='https://www.lungshan.org.tw/'>Lungshan Temple</a>",
+  "<a href='https://www.yatsen.gov.tw/en/'>National Dr. Sun Yat-Sen Memorial Hall</a>",
+  "<a href='https://https://www.npm.gov.tw/?l=2'>National National Palace Museum</a>"
+)
+
+#m <- leaflet() %>% addTiles() %>% setView(lng = 25.039, lat = 121.513, zoom = 18) 
+
+TPEPlace %>% leaflet() %>% addTiles() %>%  addMarkers(popup = tourSites)
+
+```

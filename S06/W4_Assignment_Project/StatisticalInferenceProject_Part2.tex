@@ -1,0 +1,488 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={StatisticalInferenceProject\_Part2},
+  pdfauthor={Kieso Jan},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{StatisticalInferenceProject\_Part2}
+\author{Kieso Jan}
+\date{8/21/2021}
+
+\begin{document}
+\maketitle
+
+\hypertarget{inferential-data-analysis-toothgrowth}{%
+\section{Inferential Data Analysis
+ToothGrowth}\label{inferential-data-analysis-toothgrowth}}
+
+This project analyses the ToothGrowth dataset available in R and tries
+to answer questions about whether there is a relationship between tooth
+length growth in guinea pigs and the dose and supplement given to them.
+
+\hypertarget{data-summary}{%
+\subsection{Data Summary}\label{data-summary}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(datasets)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\CommentTok{\# Load the dataset}
+\NormalTok{data }\OtherTok{=}\NormalTok{ ToothGrowth}
+\CommentTok{\# Look at data summary}
+\FunctionTok{summary}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       len        supp         dose      
+##  Min.   : 4.20   OJ:30   Min.   :0.500  
+##  1st Qu.:13.07   VC:30   1st Qu.:0.500  
+##  Median :19.25           Median :1.000  
+##  Mean   :18.81           Mean   :1.167  
+##  3rd Qu.:25.27           3rd Qu.:2.000  
+##  Max.   :33.90           Max.   :2.000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Check for any missing values}
+\FunctionTok{sum}\NormalTok{(}\FunctionTok{complete.cases}\NormalTok{(data)) }\SpecialCharTok{==} \FunctionTok{nrow}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# How are doses and supplement divided}
+\FunctionTok{table}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{dose,data}\SpecialCharTok{$}\NormalTok{supp)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      
+##       OJ VC
+##   0.5 10 10
+##   1   10 10
+##   2   10 10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Check number of unique dose values}
+\FunctionTok{unique}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{dose)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5 1.0 2.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Convert the dose to factor since only three different levels exist}
+\NormalTok{data}\SpecialCharTok{$}\NormalTok{dose }\OtherTok{=} \FunctionTok{as.factor}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{dose)}
+\end{Highlighting}
+\end{Shaded}
+
+The data frame has 60 observations, each with 3 variables. The variables
+are,
+
+\begin{itemize}
+\item
+  len: numeric Tooth length
+\item
+  supp factor: Supplement type (VC or OJ)
+\item
+  dose: numeric Dose in milligrams/day
+\end{itemize}
+
+No missing values are present in the data frame. Also, there are 10
+samples for each supplement and dose combination. The dose amount has
+only 3 unique values 0.5, 1.0 and 2.0 mg/day and so that variable has
+been converted to a factor variable.
+
+\hypertarget{data-exploratory}{%
+\subsection{Data Exploratory}\label{data-exploratory}}
+
+Let us see visually using boxplots how the tooth length varies with
+supplement and dose types.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Tooth Length Variation with supplement}
+\NormalTok{p }\OtherTok{=} \FunctionTok{ggplot}\NormalTok{(data,}\FunctionTok{aes}\NormalTok{(supp,len)) }\SpecialCharTok{+} \FunctionTok{theme\_bw}\NormalTok{() }
+\NormalTok{p }\OtherTok{=}\NormalTok{ p }\SpecialCharTok{+} \FunctionTok{geom\_boxplot}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Supplement Type\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Tooth Length (in mm)\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title=}\StringTok{\textquotesingle{}Tooth Length VS Supplement Type\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette=}\StringTok{"Pastel2"}\NormalTok{)  }
+\FunctionTok{print}\NormalTok{(p)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{StatisticalInferenceProject_Part2_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Tooth Length Variation with doses}
+\NormalTok{p }\OtherTok{=} \FunctionTok{ggplot}\NormalTok{(data,}\FunctionTok{aes}\NormalTok{(dose,len)) }\SpecialCharTok{+} \FunctionTok{theme\_bw}\NormalTok{() }
+\NormalTok{p }\OtherTok{=}\NormalTok{ p }\SpecialCharTok{+} \FunctionTok{geom\_boxplot}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Dose\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Tooth Length (in mm)\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title=}\StringTok{\textquotesingle{}Tooth Length VS Dose\textquotesingle{}}\NormalTok{)}\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette=}\StringTok{"Pastel2"}\NormalTok{) }
+\FunctionTok{print}\NormalTok{(p)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{StatisticalInferenceProject_Part2_files/figure-latex/unnamed-chunk-2-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Tooth Length Variation with doses}
+\NormalTok{p }\OtherTok{=} \FunctionTok{ggplot}\NormalTok{(data,}\FunctionTok{aes}\NormalTok{(dose,len)) }\SpecialCharTok{+} \FunctionTok{theme\_bw}\NormalTok{() }
+\NormalTok{p }\OtherTok{=}\NormalTok{ p }\SpecialCharTok{+} \FunctionTok{geom\_boxplot}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Dose\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Tooth Length (in mm)\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title=}\StringTok{\textquotesingle{}Tooth Length VS Dose And Supplement\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{supp) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette=}\StringTok{"Pastel2"}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(p)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{StatisticalInferenceProject_Part2_files/figure-latex/unnamed-chunk-2-3.pdf}
+
+Tooth length seems to be higher overall for Orange Juice as compared to
+Vitamin C, but there is not a major difference. Furthermore, for both
+types of supplements, it seems that tooth length increases with the dose
+amount. Also, for a dose of 0.5 and 1.0 mg/day, tooth length seems to be
+less for Vitamin C than Orange Juice, but for a higher dose of 2.0
+mg/day there doesn't seem to be much difference. We will test these
+claims using t-tests.
+
+\hypertarget{hypothesis-testing}{%
+\subsection{Hypothesis Testing}\label{hypothesis-testing}}
+
+\hypertarget{hypothesis-1}{%
+\subsubsection{Hypothesis 1}\label{hypothesis-1}}
+
+Does Tooth Length vary with dose amount for Orange Juice?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Does Tooth Length vary with Dose for Orange Juice?  }
+\NormalTok{df }\OtherTok{=}\NormalTok{ data[data}\SpecialCharTok{$}\NormalTok{supp}\SpecialCharTok{==}\StringTok{"OJ"} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{dose }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{,}\FloatTok{1.0}\NormalTok{),]}
+\FunctionTok{t.test}\NormalTok{(len }\SpecialCharTok{\textasciitilde{}}\NormalTok{ dose, }\AttributeTok{data =}\NormalTok{ df, }\AttributeTok{var.equal=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{paired =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{alternative=}\StringTok{"greater"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  len by dose
+## t = -5.0486, df = 17.698, p-value = 1
+## alternative hypothesis: true difference in means is greater than 0
+## 95 percent confidence interval:
+##  -12.72568       Inf
+## sample estimates:
+## mean in group 0.5   mean in group 1 
+##             13.23             22.70
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{=}\NormalTok{ data[data}\SpecialCharTok{$}\NormalTok{supp}\SpecialCharTok{==}\StringTok{"OJ"} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{dose }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\FloatTok{1.0}\NormalTok{,}\FloatTok{2.0}\NormalTok{),]}
+\FunctionTok{t.test}\NormalTok{(len }\SpecialCharTok{\textasciitilde{}}\NormalTok{ dose, }\AttributeTok{data =}\NormalTok{ df, }\AttributeTok{var.equal=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{paired =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{alternative=}\StringTok{"greater"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  len by dose
+## t = -2.2478, df = 15.842, p-value = 0.9804
+## alternative hypothesis: true difference in means is greater than 0
+## 95 percent confidence interval:
+##  -5.971376       Inf
+## sample estimates:
+## mean in group 1 mean in group 2 
+##           22.70           26.06
+\end{verbatim}
+
+We see that the p-value is greater than 0.05 in both cases. The null
+hypothesis that for Orange Juice, Tooth Length is less for 0.5 mg/day
+dose than that for 1.0 mg/day and growth for 1.0 mg/day is less than
+that of 2.0 mg/day, cannot be rejected.
+
+\hypertarget{hypothesis-2}{%
+\subsubsection{Hypothesis 2}\label{hypothesis-2}}
+
+Does Tooth Length vary with dose amount for Vitamin C?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Does Tooth Length vary with Dose for Vitamin C?  }
+\NormalTok{df }\OtherTok{=}\NormalTok{ data[data}\SpecialCharTok{$}\NormalTok{supp}\SpecialCharTok{==}\StringTok{"VC"} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{dose }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{,}\FloatTok{1.0}\NormalTok{),]}
+\FunctionTok{t.test}\NormalTok{(len }\SpecialCharTok{\textasciitilde{}}\NormalTok{ dose, }\AttributeTok{data =}\NormalTok{ df, }\AttributeTok{var.equal=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{paired =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{alternative=}\StringTok{"greater"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  len by dose
+## t = -7.4634, df = 17.862, p-value = 1
+## alternative hypothesis: true difference in means is greater than 0
+## 95 percent confidence interval:
+##  -10.83313       Inf
+## sample estimates:
+## mean in group 0.5   mean in group 1 
+##              7.98             16.77
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{=}\NormalTok{ data[data}\SpecialCharTok{$}\NormalTok{supp}\SpecialCharTok{==}\StringTok{"VC"} \SpecialCharTok{\&}\NormalTok{ data}\SpecialCharTok{$}\NormalTok{dose }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\FloatTok{1.0}\NormalTok{,}\FloatTok{2.0}\NormalTok{),]}
+\FunctionTok{t.test}\NormalTok{(len }\SpecialCharTok{\textasciitilde{}}\NormalTok{ dose, }\AttributeTok{data =}\NormalTok{ df, }\AttributeTok{var.equal=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{paired =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{alternative=}\StringTok{"greater"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  len by dose
+## t = -5.4698, df = 13.6, p-value = 1
+## alternative hypothesis: true difference in means is greater than 0
+## 95 percent confidence interval:
+##  -12.39348       Inf
+## sample estimates:
+## mean in group 1 mean in group 2 
+##           16.77           26.14
+\end{verbatim}
+
+p-value is greater than 0.05 in both cases. The null hypothesis that for
+Vitamin-C, Tooth Length is less for 0.5 mg/day dose than that for 1.0
+mg/day and growth for 1.0 mg/day is less than that of 2.0 mg/day, cannot
+be rejected.
+
+\hypertarget{hypothesis-3}{%
+\subsubsection{Hypothesis 3}\label{hypothesis-3}}
+
+Does Tooth Length vary with just Supplement Type?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Does Tooth Length vary with just supplement type?}
+\NormalTok{df }\OtherTok{=}\NormalTok{ data}
+\FunctionTok{t.test}\NormalTok{(len }\SpecialCharTok{\textasciitilde{}}\NormalTok{ supp, }\AttributeTok{data =}\NormalTok{ df, }\AttributeTok{var.equal=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{paired =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  len by supp
+## t = 1.9153, df = 55.309, p-value = 0.06063
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.1710156  7.5710156
+## sample estimates:
+## mean in group OJ mean in group VC 
+##         20.66333         16.96333
+\end{verbatim}
+
+p-value is greater than 0.05 and so the null hypothesis that the mean
+tooth length is the same cannot be rejected.
+
+\hypertarget{hypothesis-4}{%
+\subsubsection{Hypothesis 4}\label{hypothesis-4}}
+
+Does Tooth Length vary with supplmenet type for particular dose amounts?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Does Tooth Length vary with supplement type for Dose of 0.5}
+\NormalTok{df }\OtherTok{=}\NormalTok{ data[data}\SpecialCharTok{$}\NormalTok{dose }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{),]}
+\FunctionTok{t.test}\NormalTok{(len }\SpecialCharTok{\textasciitilde{}}\NormalTok{ supp, }\AttributeTok{data =}\NormalTok{ df, }\AttributeTok{var.equal=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{paired =} \ConstantTok{FALSE}\NormalTok{,}\AttributeTok{alternative=}\StringTok{"less"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  len by supp
+## t = 3.1697, df = 14.969, p-value = 0.9968
+## alternative hypothesis: true difference in means is less than 0
+## 95 percent confidence interval:
+##     -Inf 8.15396
+## sample estimates:
+## mean in group OJ mean in group VC 
+##            13.23             7.98
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Does Tooth Length vary with supplement type for Dose of 1.0}
+\NormalTok{df }\OtherTok{=}\NormalTok{ data[data}\SpecialCharTok{$}\NormalTok{dose }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\FloatTok{1.0}\NormalTok{),]}
+\FunctionTok{t.test}\NormalTok{(len }\SpecialCharTok{\textasciitilde{}}\NormalTok{ supp, }\AttributeTok{data =}\NormalTok{ df, }\AttributeTok{var.equal=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{paired =} \ConstantTok{FALSE}\NormalTok{,}\AttributeTok{alternative=}\StringTok{"less"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  len by supp
+## t = 4.0328, df = 15.358, p-value = 0.9995
+## alternative hypothesis: true difference in means is less than 0
+## 95 percent confidence interval:
+##      -Inf 8.503842
+## sample estimates:
+## mean in group OJ mean in group VC 
+##            22.70            16.77
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Does Tooth Length vary with supplement type for Dose of 2.0}
+\NormalTok{df }\OtherTok{=}\NormalTok{ data[data}\SpecialCharTok{$}\NormalTok{dose }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\FloatTok{2.0}\NormalTok{),]}
+\FunctionTok{t.test}\NormalTok{(len }\SpecialCharTok{\textasciitilde{}}\NormalTok{ supp, }\AttributeTok{data =}\NormalTok{ df, }\AttributeTok{var.equal=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{paired =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  len by supp
+## t = -0.046136, df = 14.04, p-value = 0.9639
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -3.79807  3.63807
+## sample estimates:
+## mean in group OJ mean in group VC 
+##            26.06            26.14
+\end{verbatim}
+
+p-values for all the tests are greater than 0.50. The null hypothesis
+that the Tooth Length is greater in the case of Orange Juice for a dose
+of 0.5 and 1.0 mg/day cannot be rejected. Similarly, the null hypothesis
+that mean Tooth Length is equal for Orange Juice and Vitaminc C for a
+dose of 2.0 mg/day cannot be rejected.
+
+\hypertarget{assumptions-and-conclusions}{%
+\subsubsection{Assumptions And
+Conclusions}\label{assumptions-and-conclusions}}
+
+We have used the t-test for hypoethsis testing we have assumed that the
+data comes from a normal distribution and also that the data is a random
+sample from the actual population. For each supplement individually,
+increase in dosage increases the tooth length. Overall, there is no
+statistical significant difference between orange juice and vitamin C.
+However, for 0.5 mg/day and 1.0 mg/day dose orange juice gives longer
+tooth length but for 2.0 mg/day there is no statistically significant
+difference.
+
+\end{document}

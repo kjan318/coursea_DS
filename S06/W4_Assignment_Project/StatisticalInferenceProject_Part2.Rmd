@@ -1,0 +1,124 @@
+---
+title: "StatisticalInferenceProject_Part2"
+author: "Kieso Jan"
+date: "8/21/2021"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+
+# Inferential Data Analysis ToothGrowth
+This project analyses the ToothGrowth dataset available in R and tries to answer questions about whether there is a relationship between tooth length growth in guinea pigs and the dose and supplement given to them.
+
+## Data Summary
+
+```{r}
+library(datasets)
+library(ggplot2)
+# Load the dataset
+data = ToothGrowth
+# Look at data summary
+summary(data)
+# Check for any missing values
+sum(complete.cases(data)) == nrow(data)
+# How are doses and supplement divided
+table(data$dose,data$supp)
+# Check number of unique dose values
+unique(data$dose)
+# Convert the dose to factor since only three different levels exist
+data$dose = as.factor(data$dose)
+```
+
+The data frame has 60 observations, each with 3 variables. The variables are,
+
+- len: numeric Tooth length
+
+- supp factor: Supplement type (VC or OJ)
+
+- dose: numeric Dose in milligrams/day
+
+No missing values are present in the data frame. Also, there are 10 samples for each supplement and dose combination. The dose amount has only 3 unique values 0.5, 1.0 and 2.0 mg/day and so that variable has been converted to a factor variable.
+
+## Data Exploratory
+Let us see visually using boxplots how the tooth length varies with supplement and dose types.
+
+```{r}
+# Tooth Length Variation with supplement
+p = ggplot(data,aes(supp,len)) + theme_bw() 
+p = p + geom_boxplot() + xlab('Supplement Type') + ylab('Tooth Length (in mm)') + 
+  labs(title='Tooth Length VS Supplement Type') +
+  scale_fill_brewer(palette="Pastel2")  
+print(p)
+# Tooth Length Variation with doses
+p = ggplot(data,aes(dose,len)) + theme_bw() 
+p = p + geom_boxplot() + xlab('Dose') + ylab('Tooth Length (in mm)') + 
+  labs(title='Tooth Length VS Dose')+ 
+  scale_fill_brewer(palette="Pastel2") 
+print(p)
+# Tooth Length Variation with doses
+p = ggplot(data,aes(dose,len)) + theme_bw() 
+p = p + geom_boxplot() + xlab('Dose') + ylab('Tooth Length (in mm)') + 
+  labs(title='Tooth Length VS Dose And Supplement') + facet_wrap(~supp) +
+  scale_fill_brewer(palette="Pastel2")
+print(p)
+```
+
+Tooth length seems to be higher overall for Orange Juice as compared to Vitamin C, but there is not a major difference. Furthermore, for both types of supplements, it seems that tooth length increases with the dose amount. Also, for a dose of 0.5 and 1.0 mg/day, tooth length seems to be less for Vitamin C than Orange Juice, but for a higher dose of 2.0 mg/day there doesn't seem to be much difference. We will test these claims using t-tests.
+
+## Hypothesis Testing
+
+### Hypothesis 1
+Does Tooth Length vary with dose amount for Orange Juice?
+
+```{r}
+# Does Tooth Length vary with Dose for Orange Juice?  
+df = data[data$supp=="OJ" & data$dose %in% c(0.5,1.0),]
+t.test(len ~ dose, data = df, var.equal=FALSE, paired = FALSE, alternative="greater")
+df = data[data$supp=="OJ" & data$dose %in% c(1.0,2.0),]
+t.test(len ~ dose, data = df, var.equal=FALSE, paired = FALSE, alternative="greater")
+```
+
+We see that the p-value is greater than 0.05 in both cases. The null hypothesis that for Orange Juice, Tooth Length is less for 0.5 mg/day dose than that for 1.0 mg/day and growth for 1.0 mg/day is less than that of 2.0 mg/day, cannot be rejected. 
+
+### Hypothesis 2
+Does Tooth Length vary with dose amount for Vitamin C?
+```{r}
+# Does Tooth Length vary with Dose for Vitamin C?  
+df = data[data$supp=="VC" & data$dose %in% c(0.5,1.0),]
+t.test(len ~ dose, data = df, var.equal=FALSE, paired = FALSE, alternative="greater")
+df = data[data$supp=="VC" & data$dose %in% c(1.0,2.0),]
+t.test(len ~ dose, data = df, var.equal=FALSE, paired = FALSE, alternative="greater")
+```
+p-value is greater than 0.05 in both cases. The null hypothesis that for Vitamin-C, Tooth Length is less for 0.5 mg/day dose than that for 1.0 mg/day and growth for 1.0 mg/day is less than that of 2.0 mg/day, cannot be rejected. 
+
+### Hypothesis 3
+Does Tooth Length vary with just Supplement Type?
+```{r}
+# Does Tooth Length vary with just supplement type?
+df = data
+t.test(len ~ supp, data = df, var.equal=FALSE, paired = FALSE)
+```
+p-value is greater than 0.05 and so the null hypothesis that the mean tooth length is the same cannot be rejected.
+
+### Hypothesis 4
+Does Tooth Length vary with supplmenet type for particular dose amounts?
+```{r}
+# Does Tooth Length vary with supplement type for Dose of 0.5
+df = data[data$dose %in% c(0.5),]
+t.test(len ~ supp, data = df, var.equal=FALSE, paired = FALSE,alternative="less")
+# Does Tooth Length vary with supplement type for Dose of 1.0
+df = data[data$dose %in% c(1.0),]
+t.test(len ~ supp, data = df, var.equal=FALSE, paired = FALSE,alternative="less")
+# Does Tooth Length vary with supplement type for Dose of 2.0
+df = data[data$dose %in% c(2.0),]
+t.test(len ~ supp, data = df, var.equal=FALSE, paired = FALSE)
+```
+
+p-values for all the tests are greater than 0.50. The null hypothesis that the Tooth Length is greater in the case of Orange Juice for a dose of 0.5 and 1.0 mg/day cannot be rejected. Similarly, the null hypothesis that mean Tooth Length is equal for Orange Juice and Vitaminc C for a dose of 2.0 mg/day cannot be rejected.
+
+
+### Assumptions And Conclusions
+We have used the t-test for hypoethsis testing we have assumed that the data comes from a normal distribution and also that the data is a random sample from the actual population.
+For each supplement individually, increase in dosage increases the tooth length. 
+Overall, there is no statistical significant difference between orange juice and vitamin C. However, for 0.5 mg/day and 1.0 mg/day dose orange juice gives longer tooth length but for 2.0 mg/day there is no statistically significant difference.

@@ -1,0 +1,23 @@
+---
+title: "Daimond Price Analysis"
+author: "Kieso Jan"
+date: "1/1/2022"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Diamond Weight vs price in diff. cut
+#### Date: January 1st 2022  
+```{r, echo = F}
+suppressPackageStartupMessages(library(plotly))
+plot_ly(diamonds, x = diamonds$carat, y = diamonds$price, 
+        type = 'scatter', mode = 'markers', color = diamonds$cut) %>% 
+  layout(xaxis = list(title = 'weight of the diamond(carat)'), yaxis = list(title = 'price in US dollars'))
+```
+## Key highlights of Observation
+- The price & weight is positive correlation 
+- The price is even higher when similar Weight of Diamond with better cut
