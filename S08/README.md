@@ -1,6 +1,6 @@
 
  ## Assignment result (HTML Format)
- Please click [here](https://htmlpreview.github.io/?https://github.com/kjan318/datasciencecoursera/blob/master/S08/W4_Assignment.html)   
+ Please click [here](https://kjan318.github.io/coursea_DS/S08/W4_Assignment.html)   
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
