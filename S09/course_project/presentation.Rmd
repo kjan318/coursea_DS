@@ -1,0 +1,46 @@
+---
+title: "Automobiles (1973–74 models) Data Exploration"
+author: "Kieso Jan"
+date: "1/2/2022"
+output: ioslides_presentation
+smaller: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction {.smaller}
+This is the presentation for Coursera Data Science Specialization S09: Developing Data Products. This document will guide you through the basics of Shiny app development. For more information, please see the following links:
+
+1. The 1974 Motor Trend US magazine Data for 32 automobiles (1973--74 models)  (mtcars data) can be accessed with **data(mtcars)** in R
+2. The R codes for building the Shiny App (**server.R** and **ui.R**) can be accessed [here](https://github.com/kjan318/coursea_DS/tree/gh-pages/S09/course_project/KJ_shinyApp/)
+3. You can visit [here](https://kjan318.shinyapps.io/KJ_mtcarsApp/) for shiny app, which contains functions for:
+  - Exploring the distribution of each variable in a histogram
+  - Exploring the relationship of up to three variables in a scatter plot
+
+## The mtcars Data {.smaller}
+- The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973--74 models). A data frame with 32 observations on 11 (numeric) variables.
+- Use **?mtcars** to read more about the study
+```{r, echo = T}
+data(mtcars)
+head(mtcars, 5)
+```
+
+## Histogram creation R Codes {.smaller}
+```{r, echo = T}
+inputBin <- 10; histVal <- mtcars[, 'mpg']
+hist(histVal, breaks = seq(min(histVal), max(histVal), length.out = inputBin+1),
+     xlab = 'mpg', main = paste('Distribution of mpg'),
+     col = 'darkolivegreen1', border = 'lightsteelblue4')
+```
+
+## Scatter Plot Creation R Codes {.smaller}
+```{r, echo = T, fig.width=6, fig.height=3.9, fig.align = 'center'}
+library(ggplot2)
+ggplot(data = mtcars, aes(x = wt, y = mpg, color = cyl)) + 
+      geom_point(size = 5, alpha = 1, na.rm = T) +
+      theme_bw(base_size = 14) + xlab('wt') + ylab('mpg') + labs(colour = 'cyl') +
+      ggtitle(paste('wt vs mpg Scatter plot'))
+```
+
